@@ -45,6 +45,3 @@ bool Kitchen_cabinet::isCollision(const Item &item) {
             
 }
 
-bool Kitchen_cabinet::is_in_air(){
-    return get_position().get_z() != 0;
-}

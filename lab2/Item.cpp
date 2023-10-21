@@ -62,3 +62,7 @@ bool Item::isCollision(const Item &item) {
              (abs(get_position().get_z() - item.position.get_z()) <
               get_size().get_z() + item.size.get_z()));
 }
+
+bool Item::is_in_air(){
+    return get_position().get_z() != 0;
+}

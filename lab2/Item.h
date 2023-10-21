@@ -22,6 +22,7 @@ public:
     virtual void show();
 
     virtual bool isCollision(const Item &item);
+    virtual bool Item::is_in_air();
 };
 
 

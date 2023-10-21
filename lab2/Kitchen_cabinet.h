@@ -20,7 +20,6 @@ public:
     void show() override;
 
     bool isCollision(const Item &item);
-    bool is_in_air();
 };
 
 #endif
