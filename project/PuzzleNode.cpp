@@ -88,7 +88,8 @@ void PuzzleNode::rotate(int angle) {
   }
 }
 
-bool PuzzleNode::check(PuzzleNode *puzzleNode, std::string position) const {
+bool PuzzleNode::checkToConnect(PuzzleNode *puzzleNode,
+                                std::string position) const {
   bool result = false;
   if (position == "top") {
     if (get_topNode() == nullptr && puzzleNode->get_bottomNode() == nullptr &&
@@ -97,19 +98,19 @@ bool PuzzleNode::check(PuzzleNode *puzzleNode, std::string position) const {
       result = true;
     }
   } else if (position == "right") {
-    if (get_rightNode() == nullptr && puzzleNode->get_leftNode() &&
+    if (get_rightNode() == nullptr && puzzleNode->get_leftNode() == nullptr &&
         get_right() == puzzleNode->get_left() &&
         get_convex() != puzzleNode->get_convex()) {
       result = true;
     }
   } else if (position == "bottom") {
-    if (get_bottomNode() == nullptr && puzzleNode->get_topNode() &&
+    if (get_bottomNode() == nullptr && puzzleNode->get_topNode() == nullptr &&
         get_bottom() == puzzleNode->get_top() &&
         get_convex() != puzzleNode->get_convex()) {
       result = true;
     }
   } else if (position == "left") {
-    if (get_leftNode() == nullptr && puzzleNode->get_rightNode() &&
+    if (get_leftNode() == nullptr && puzzleNode->get_rightNode() == nullptr &&
         get_left() == puzzleNode->get_right() &&
         get_convex() != puzzleNode->get_convex()) {
       result = true;
@@ -118,4 +119,59 @@ bool PuzzleNode::check(PuzzleNode *puzzleNode, std::string position) const {
     std::cout << "Inappropriate value" << std::endl;
   }
   return result;
+}
+
+bool PuzzleNode::checkConnection(PuzzleNode *puzzleNode,
+                                 std::string position) const {
+  bool result = false;
+  if (position == "top") {
+    if (get_top() == puzzleNode->get_bottom() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "right") {
+    if (get_right() == puzzleNode->get_left() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "bottom") {
+    if (get_bottom() == puzzleNode->get_top() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "left") {
+    if (get_left() == puzzleNode->get_right() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else {
+    std::cout << "Inappropriate value" << std::endl;
+  }
+  return result;
+}
+
+void PuzzleNode::connectNode(PuzzleNode *puzzleNode, std::string position,
+                             int value) {
+
+  if (position == "top") {
+    set_top(value);
+    set_topNode(puzzleNode);
+    puzzleNode->set_bottom(value);
+    puzzleNode->set_bottomNode(this);
+  } else if (position == "right") {
+    set_right(value);
+    set_rightNode(puzzleNode);
+    puzzleNode->set_left(value);
+    puzzleNode->set_leftNode(this);
+  } else if (position == "bottom") {
+    set_bottom(value);
+    set_bottomNode(puzzleNode);
+    puzzleNode->set_top(value);
+    puzzleNode->set_topNode(this);
+  } else if (position == "left") {
+    set_left(value);
+    set_leftNode(puzzleNode);
+    puzzleNode->set_right(value);
+    puzzleNode->set_rightNode(this);
+  }
 }

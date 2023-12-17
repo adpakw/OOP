@@ -3,6 +3,7 @@
 
 #include "MathTile.h"
 #include "PuzzleNode.h"
+#include <random>
 #include <vector>
 
 class PuzzleMap {
@@ -21,10 +22,13 @@ public:
   PuzzleMap(int size, const std::vector<PuzzleNode *> &puzzles);
   PuzzleMap(const PuzzleMap &puzzleMap);
 
+  void show() const;
+
   void addPuzzle(PuzzleNode *puzzleNode);
   // void removePuzzleByPosition();
 
   void generatePuzzleMap();
+  bool checkConnectionsInMap();
 };
 
 #endif

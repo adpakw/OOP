@@ -103,17 +103,34 @@ int main() {
   assert(threeNode.get_leftNode() == nullptr);
 
   PuzzleNode fourNode =
-      PuzzleNode(2, 4, 9, 0, false, nullptr, nullptr, nullptr, nullptr);
+      PuzzleNode(2, 3, 9, 0, false, nullptr, nullptr, nullptr, nullptr);
 
-  assert(fourNode.check(&threeNode, "top") == 1);
+  assert(fourNode.checkToConnect(&threeNode, "right") == 1);
+
+  fourNode.connectNode(&threeNode, "right", threeNode.get_left());
+
+  assert(fourNode.get_rightNode() == &threeNode);
+  assert(threeNode.get_leftNode() == &fourNode);
 
   PuzzleMap oneMap = PuzzleMap();
+
   assert(oneMap.get_size() == 1);
   assert(oneMap.get_puzzles().size() == 0);
-  oneMap.generatePuzzleMap();
-  oneMap.addPuzzle(&oneNode);
-  assert(oneMap.get_puzzles().size() == 1);
-  oneMap.generatePuzzleMap();
+  oneMap.set_size(2);
+
+  PuzzleMap twoMap = PuzzleMap();
+  twoMap.set_size(3);
+  twoMap.generatePuzzleMap();
+
+  assert(twoMap.checkConnectionsInMap() == 1);
+  assert(twoMap.get_puzzles().size() == 9);
+  twoMap.show();
+  // std::vector<PuzzleNode *> t = oneMap.get_puzzles();
+  // PuzzleNode *tes = t[3];
+  // PuzzleNode test = PuzzleNode(t.end().get_puzzles());
+  // std::cout << tes->get_convex() << std::endl;
+
+  // oneMap.show();
 
   // threeNode.show();
   //   PuzzleNode twoNode = PuzzleNode();
