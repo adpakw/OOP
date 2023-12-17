@@ -124,22 +124,11 @@ int main() {
 
   assert(twoMap.checkConnectionsInMap() == 1);
   assert(twoMap.get_puzzles().size() == 9);
-  twoMap.show();
-  // std::vector<PuzzleNode *> t = oneMap.get_puzzles();
-  // PuzzleNode *tes = t[3];
-  // PuzzleNode test = PuzzleNode(t.end().get_puzzles());
-  // std::cout << tes->get_convex() << std::endl;
+  // twoMap.show();
+  twoMap.removePuzzleByPosition(1, 1);
+  // twoMap.show();
+  assert(twoMap.get_puzzles().size() == 8);
 
-  // oneMap.show();
-
-  // threeNode.show();
-  //   PuzzleNode twoNode = PuzzleNode();
-  //   assert(oneNode.get_topNode() == twoNode.get_topNode());
-  //   std::cout << twoNode.get_topNode() << std::endl;
-  // //   twoNode.set_topNode(&oneNode);
-  // std::cout << threeNode.get_leftNode() << std::endl;
-  // std::cout << twoNode.get_rightNode() << std::endl;
-  // std::cout << &oneNode << std::endl;
   std::cout << "All testes has completed successfully" << std::endl;
   return 0;
 }

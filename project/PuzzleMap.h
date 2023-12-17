@@ -25,10 +25,10 @@ public:
   void show() const;
 
   void addPuzzle(PuzzleNode *puzzleNode);
-  // void removePuzzleByPosition();
+  void removePuzzleByPosition(int x, int y);
 
   void generatePuzzleMap();
-  bool checkConnectionsInMap();
+  bool checkConnectionsInMap() const;
 };
 
 #endif

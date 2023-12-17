@@ -47,7 +47,13 @@ void PuzzleMap::show() const {
   }
 }
 
-// void PuzzleMap::removePuzzleByPosition();
+void PuzzleMap::removePuzzleByPosition(int x, int y) {
+  puzzles[x * size + y]->get_topNode()->set_bottomNode(nullptr);
+  puzzles[x * size + y]->get_bottomNode()->set_topNode(nullptr);
+  puzzles[x * size + y]->get_rightNode()->set_leftNode(nullptr);
+  puzzles[x * size + y]->get_leftNode()->set_rightNode(nullptr);
+  puzzles.erase(puzzles.begin() + (x * size + y));
+}
 
 void PuzzleMap::generatePuzzleMap() {
   if (!get_puzzles().empty()) {
@@ -101,7 +107,7 @@ void PuzzleMap::generatePuzzleMap() {
   }
 }
 
-bool PuzzleMap::checkConnectionsInMap() {
+bool PuzzleMap::checkConnectionsInMap() const {
   int result = 0;
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {

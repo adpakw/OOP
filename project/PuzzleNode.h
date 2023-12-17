@@ -29,10 +29,11 @@ public:
   PuzzleNode(const PuzzleNode &puzzleNode);
 
   void show() const override;
-  void rotate(int angle);
+  void rotate(int angle) override;
 
   bool checkToConnect(PuzzleNode *puzzleNode, std::string position) const;
   bool checkConnection(PuzzleNode *puzzleNode, std::string position) const;
+
   void connectNode(PuzzleNode *puzzleNode, std::string position, int value);
 };
 
