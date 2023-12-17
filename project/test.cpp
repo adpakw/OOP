@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "MathTile.h"
+#include "PuzzleNode.h"
 
 int main() {
 
@@ -38,6 +39,57 @@ int main() {
   assert(oneTile.get_left() == 6);
   assert(oneTile.get_convex() == true);
 
+  PuzzleNode oneNode = PuzzleNode();
+  assert(oneNode.get_top() == 0);
+  assert(oneNode.get_right() == 0);
+  assert(oneNode.get_bottom() == 0);
+  assert(oneNode.get_left() == 0);
+  assert(oneNode.get_convex() == false);
+  assert(oneNode.get_topNode() == nullptr);
+  assert(oneNode.get_rightNode() == nullptr);
+  assert(oneNode.get_bottomNode() == nullptr);
+  assert(oneNode.get_leftNode() == nullptr);
+
+  PuzzleNode twoNode =
+      PuzzleNode(1, 0, 3, 4, true, nullptr, &oneNode, nullptr, nullptr);
+  assert(twoNode.get_top() == 1);
+  assert(twoNode.get_right() == 0);
+  assert(twoNode.get_bottom() == 3);
+  assert(twoNode.get_left() == 4);
+  assert(twoNode.get_convex() == true);
+  assert(twoNode.get_topNode() == nullptr);
+  assert(twoNode.get_rightNode() == &oneNode);
+  assert(twoNode.get_bottomNode() == nullptr);
+  assert(twoNode.get_leftNode() == nullptr);
+
+  PuzzleNode threeNode = PuzzleNode(twoNode);
+  assert(threeNode.get_top() == 1);
+  assert(threeNode.get_right() == 0);
+  assert(threeNode.get_bottom() == 3);
+  assert(threeNode.get_left() == 4);
+  assert(threeNode.get_convex() == true);
+  assert(threeNode.get_topNode() == nullptr);
+  assert(threeNode.get_rightNode() == &oneNode);
+  assert(threeNode.get_bottomNode() == nullptr);
+  assert(threeNode.get_leftNode() == nullptr);
+
+  threeNode.set_left(0);
+  threeNode.set_right(2);
+  threeNode.set_leftNode(&oneNode);
+  threeNode.set_rightNode(nullptr);
+  assert(threeNode.get_topNode() == nullptr);
+  assert(threeNode.get_rightNode() == nullptr);
+  assert(threeNode.get_bottomNode() == nullptr);
+  assert(threeNode.get_leftNode() == &oneNode);
+  assert(threeNode.get_leftNode() == twoNode.get_rightNode());
+  std::cout << oneNode.check(&oneNode) << std::endl;
+  //   PuzzleNode twoNode = PuzzleNode();
+  //   assert(oneNode.get_topNode() == twoNode.get_topNode());
+  //   std::cout << twoNode.get_topNode() << std::endl;
+  //   twoNode.set_topNode(&oneNode);
+  std::cout << threeNode.get_leftNode() << std::endl;
+  std::cout << twoNode.get_rightNode() << std::endl;
+  std::cout << &oneNode << std::endl;
   std::cout << "All testes has completed successfully" << std::endl;
   return 0;
 }

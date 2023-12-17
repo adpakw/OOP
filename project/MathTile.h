@@ -26,7 +26,7 @@ public:
   MathTile(int top, int right, int bottom, int left, bool convex);
   MathTile(const MathTile &mathTile);
 
-  void show() const;
+  virtual void show() const;
 };
 
 #endif
