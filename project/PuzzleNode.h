@@ -2,6 +2,7 @@
 #define PUZZLENODE_H
 
 #include "MathTile.h"
+#include <string>
 
 class PuzzleNode final : public MathTile {
 private:
@@ -30,7 +31,7 @@ public:
   void show() const override;
   void rotate(int angle);
 
-  bool check(PuzzleNode *puzzleNode) const;
+  bool check(PuzzleNode *puzzleNode, std::string position) const;
 };
 
 #endif

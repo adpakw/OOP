@@ -88,6 +88,34 @@ void PuzzleNode::rotate(int angle) {
   }
 }
 
-bool PuzzleNode::check(PuzzleNode *puzzleNode) const {
-  return this == puzzleNode;
+bool PuzzleNode::check(PuzzleNode *puzzleNode, std::string position) const {
+  bool result = false;
+  if (position == "top") {
+    if (get_topNode() == nullptr && puzzleNode->get_bottomNode() == nullptr &&
+        get_top() == puzzleNode->get_bottom() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "right") {
+    if (get_rightNode() == nullptr && puzzleNode->get_leftNode() &&
+        get_right() == puzzleNode->get_left() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "bottom") {
+    if (get_bottomNode() == nullptr && puzzleNode->get_topNode() &&
+        get_bottom() == puzzleNode->get_top() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else if (position == "left") {
+    if (get_leftNode() == nullptr && puzzleNode->get_rightNode() &&
+        get_left() == puzzleNode->get_right() &&
+        get_convex() != puzzleNode->get_convex()) {
+      result = true;
+    }
+  } else {
+    std::cout << "Inappropriate value" << std::endl;
+  }
+  return result;
 }

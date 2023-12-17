@@ -101,6 +101,12 @@ int main() {
   assert(threeNode.get_bottomNode() == nullptr);
   assert(threeNode.get_leftNode() == nullptr);
 
+  PuzzleNode fourNode =
+      PuzzleNode(2, 4, 9, 0, false, nullptr, nullptr, nullptr, nullptr);
+
+  assert(fourNode.check(&threeNode, "top") == 1);
+  
+
   // threeNode.show();
   //   PuzzleNode twoNode = PuzzleNode();
   //   assert(oneNode.get_topNode() == twoNode.get_topNode());
