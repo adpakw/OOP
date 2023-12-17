@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "MathTile.h"
+#include "PuzzleMap.h"
 #include "PuzzleNode.h"
 
 int main() {
@@ -105,7 +106,14 @@ int main() {
       PuzzleNode(2, 4, 9, 0, false, nullptr, nullptr, nullptr, nullptr);
 
   assert(fourNode.check(&threeNode, "top") == 1);
-  
+
+  PuzzleMap oneMap = PuzzleMap();
+  assert(oneMap.get_size() == 1);
+  assert(oneMap.get_puzzles().size() == 0);
+  oneMap.generatePuzzleMap();
+  oneMap.addPuzzle(&oneNode);
+  assert(oneMap.get_puzzles().size() == 1);
+  oneMap.generatePuzzleMap();
 
   // threeNode.show();
   //   PuzzleNode twoNode = PuzzleNode();

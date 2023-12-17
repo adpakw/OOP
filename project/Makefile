@@ -1,7 +1,7 @@
 all: rebuild
 
 project:
-	g++ -o project main.cpp MathTile.cpp PuzzleNode.cpp
+	g++ -o project main.cpp MathTile.cpp PuzzleNode.cpp PuzzleMap.cpp
 
 clang:
 	clang-format -i *.cpp *.h
