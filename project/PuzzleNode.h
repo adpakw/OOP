@@ -28,6 +28,7 @@ public:
   PuzzleNode(const PuzzleNode &puzzleNode);
 
   void show() const override;
+  void rotate(int angle);
 
   bool check(PuzzleNode *puzzleNode) const;
 };

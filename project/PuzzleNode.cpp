@@ -54,6 +54,40 @@ void PuzzleNode::show() const {
             << "\nleftNode = " << get_leftNode() << std::endl;
 }
 
+void PuzzleNode::rotate(int angle) {
+  MathTile::rotate(angle);
+  PuzzleNode *buf;
+  switch (angle) {
+  case (0):
+    break;
+  case (90):
+    buf = get_topNode();
+    set_topNode(get_leftNode());
+    set_leftNode(get_bottomNode());
+    set_bottomNode(get_rightNode());
+    set_rightNode(buf);
+    break;
+  case (180):
+    buf = get_topNode();
+    set_topNode(get_bottomNode());
+    set_bottomNode(buf);
+    buf = get_leftNode();
+    set_leftNode(get_rightNode());
+    set_rightNode(buf);
+    break;
+  case (270):
+    buf = get_topNode();
+    set_topNode(get_rightNode());
+    set_rightNode(get_bottomNode());
+    set_bottomNode(get_leftNode());
+    set_leftNode(buf);
+    break;
+  default:
+    std::cout << "Inappropriate value" << std::endl;
+    break;
+  }
+}
+
 bool PuzzleNode::check(PuzzleNode *puzzleNode) const {
   return this == puzzleNode;
 }

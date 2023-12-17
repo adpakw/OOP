@@ -27,6 +27,7 @@ public:
   MathTile(const MathTile &mathTile);
 
   virtual void show() const;
+  virtual void rotate(int angle);
 };
 
 #endif

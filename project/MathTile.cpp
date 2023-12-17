@@ -50,3 +50,36 @@ void MathTile::show() const {
             << "\nbottom = " << get_bottom() << "\nleft = " << get_left()
             << "\nis convex: " << get_convex() << std::endl;
 }
+
+void MathTile::rotate(int angle) {
+  int buf;
+  switch (angle) {
+  case (0):
+    break;
+  case (90):
+    buf = get_top();
+    set_top(get_left());
+    set_left(get_bottom());
+    set_bottom(get_right());
+    set_right(buf);
+    break;
+  case (180):
+    buf = get_top();
+    set_top(get_bottom());
+    set_bottom(buf);
+    buf = get_left();
+    set_left(get_right());
+    set_right(buf);
+    break;
+  case (270):
+    buf = get_top();
+    set_top(get_right());
+    set_right(get_bottom());
+    set_bottom(get_left());
+    set_left(buf);
+    break;
+  default:
+    std::cout << "Inappropriate value" << std::endl;
+    break;
+  }
+}

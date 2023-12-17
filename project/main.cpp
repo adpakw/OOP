@@ -39,6 +39,12 @@ int main() {
   assert(oneTile.get_left() == 6);
   assert(oneTile.get_convex() == true);
 
+  threeTile.rotate(180);
+  assert(threeTile.get_top() == 3);
+  assert(threeTile.get_right() == 4);
+  assert(threeTile.get_bottom() == 1);
+  assert(threeTile.get_left() == 2);
+
   PuzzleNode oneNode = PuzzleNode();
   assert(oneNode.get_top() == 0);
   assert(oneNode.get_right() == 0);
@@ -77,19 +83,32 @@ int main() {
   threeNode.set_right(2);
   threeNode.set_leftNode(&oneNode);
   threeNode.set_rightNode(nullptr);
+
   assert(threeNode.get_topNode() == nullptr);
   assert(threeNode.get_rightNode() == nullptr);
   assert(threeNode.get_bottomNode() == nullptr);
   assert(threeNode.get_leftNode() == &oneNode);
   assert(threeNode.get_leftNode() == twoNode.get_rightNode());
-  std::cout << oneNode.check(&oneNode) << std::endl;
+
+  threeNode.rotate(90);
+
+  assert(threeNode.get_top() == 0);
+  assert(threeNode.get_right() == 1);
+  assert(threeNode.get_bottom() == 2);
+  assert(threeNode.get_left() == 3);
+  assert(threeNode.get_topNode() == &oneNode);
+  assert(threeNode.get_rightNode() == nullptr);
+  assert(threeNode.get_bottomNode() == nullptr);
+  assert(threeNode.get_leftNode() == nullptr);
+
+  // threeNode.show();
   //   PuzzleNode twoNode = PuzzleNode();
   //   assert(oneNode.get_topNode() == twoNode.get_topNode());
   //   std::cout << twoNode.get_topNode() << std::endl;
-  //   twoNode.set_topNode(&oneNode);
-  std::cout << threeNode.get_leftNode() << std::endl;
-  std::cout << twoNode.get_rightNode() << std::endl;
-  std::cout << &oneNode << std::endl;
+  // //   twoNode.set_topNode(&oneNode);
+  // std::cout << threeNode.get_leftNode() << std::endl;
+  // std::cout << twoNode.get_rightNode() << std::endl;
+  // std::cout << &oneNode << std::endl;
   std::cout << "All testes has completed successfully" << std::endl;
   return 0;
 }
