@@ -116,7 +116,12 @@ int main() {
 
   assert(oneMap.get_size() == 1);
   assert(oneMap.get_puzzles().size() == 0);
+
   oneMap.set_size(2);
+  oneMap.addPuzzle(&oneNode);
+
+  assert(oneMap.get_size() == 2);
+  assert(oneMap.get_puzzles().size() == 1);
 
   PuzzleMap twoMap = PuzzleMap();
   twoMap.set_size(3);
@@ -128,6 +133,32 @@ int main() {
   twoMap.removePuzzleByPosition(1, 1);
   // twoMap.show();
   assert(twoMap.get_puzzles().size() == 8);
+
+  PuzzleNode fiveNode =
+      PuzzleNode(5, 1, 2, 5, false, nullptr, nullptr, nullptr, nullptr);
+  PuzzleNode sixNode =
+      PuzzleNode(6, 6, 3, 1, true, nullptr, nullptr, nullptr, nullptr);
+  PuzzleNode sevenNode =
+      PuzzleNode(2, 4, 8, 8, true, nullptr, nullptr, nullptr, nullptr);
+  PuzzleNode eightNode =
+      PuzzleNode(3, 7, 7, 4, false, nullptr, nullptr, nullptr, nullptr);
+
+  PuzzleMap threeMap = PuzzleMap();
+  threeMap.set_size(2);
+  threeMap.addPuzzle(&fiveNode);
+  assert(fiveNode.checkToConnect(&sixNode, "right") == 1);
+  fiveNode.set_rightNode(&sixNode);
+  threeMap.addPuzzle(&sixNode);
+  assert(fiveNode.checkToConnect(&sevenNode, "bottom") == 1);
+  fiveNode.set_bottomNode(&sevenNode);
+  threeMap.addPuzzle(&sevenNode);
+  assert(sevenNode.checkToConnect(&eightNode, "right") == 1);
+  assert(sixNode.checkToConnect(&eightNode, "bottom") == 1);
+  sevenNode.set_rightNode(&eightNode);
+  sixNode.set_bottomNode(&eightNode);
+  threeMap.addPuzzle(&eightNode);
+
+  threeMap.show();
 
   std::cout << "All testes has completed successfully" << std::endl;
   return 0;
