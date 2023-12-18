@@ -48,10 +48,14 @@ void PuzzleMap::show() const {
 }
 
 void PuzzleMap::removePuzzleByPosition(int x, int y) {
-  puzzles[x * size + y]->get_topNode()->set_bottomNode(nullptr);
-  puzzles[x * size + y]->get_bottomNode()->set_topNode(nullptr);
-  puzzles[x * size + y]->get_rightNode()->set_leftNode(nullptr);
-  puzzles[x * size + y]->get_leftNode()->set_rightNode(nullptr);
+  puzzles[x * size + y]->disconnectNode(puzzles[x * size + y]->get_topNode(),
+                                        "top");
+  puzzles[x * size + y]->disconnectNode(puzzles[x * size + y]->get_rightNode(),
+                                        "right");
+  puzzles[x * size + y]->disconnectNode(puzzles[x * size + y]->get_bottomNode(),
+                                        "bottom");
+  puzzles[x * size + y]->disconnectNode(puzzles[x * size + y]->get_leftNode(),
+                                        "left");
   puzzles.erase(puzzles.begin() + (x * size + y));
 }
 
@@ -129,3 +133,4 @@ bool PuzzleMap::checkConnectionsInMap() const {
   }
   return result == (size - 1) * 2 * size;
 }
+

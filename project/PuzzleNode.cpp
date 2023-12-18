@@ -175,3 +175,19 @@ void PuzzleNode::connectNode(PuzzleNode *puzzleNode, std::string position,
     puzzleNode->set_rightNode(this);
   }
 }
+
+void PuzzleNode::disconnectNode(PuzzleNode *puzzleNode, std::string position) {
+  if (position == "top") {
+    set_topNode(nullptr);
+    puzzleNode->set_bottomNode(nullptr);
+  } else if (position == "right") {
+    set_rightNode(nullptr);
+    puzzleNode->set_leftNode(nullptr);
+  } else if (position == "bottom") {
+    set_bottomNode(nullptr);
+    puzzleNode->set_topNode(nullptr);
+  } else if (position == "left") {
+    set_leftNode(nullptr);
+    puzzleNode->set_rightNode(nullptr);
+  }
+}
