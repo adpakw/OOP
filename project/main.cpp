@@ -107,7 +107,7 @@ int main() {
 
   assert(fourNode.checkToConnect(&threeNode, "right") == 1);
 
-  fourNode.connectNode(&threeNode, "right", threeNode.get_left());
+  fourNode.connectNode(&threeNode, "right");
 
   assert(fourNode.get_rightNode() == &threeNode);
   assert(threeNode.get_leftNode() == &fourNode);
@@ -147,15 +147,15 @@ int main() {
   threeMap.set_size(2);
   threeMap.addPuzzle(&fiveNode);
   assert(fiveNode.checkToConnect(&sixNode, "right") == 1);
-  fiveNode.set_rightNode(&sixNode);
+  fiveNode.connectNode(&sixNode, "right");
   threeMap.addPuzzle(&sixNode);
   assert(fiveNode.checkToConnect(&sevenNode, "bottom") == 1);
-  fiveNode.set_bottomNode(&sevenNode);
+  fiveNode.connectNode(&sevenNode, "bottom");
   threeMap.addPuzzle(&sevenNode);
   assert(sevenNode.checkToConnect(&eightNode, "right") == 1);
   assert(sixNode.checkToConnect(&eightNode, "bottom") == 1);
-  sevenNode.set_rightNode(&eightNode);
-  sixNode.set_bottomNode(&eightNode);
+  sevenNode.connectNode(&eightNode, "right");
+  sixNode.connectNode(&eightNode, "bottom");
   threeMap.addPuzzle(&eightNode);
 
   threeMap.show();

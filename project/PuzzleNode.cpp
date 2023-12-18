@@ -150,8 +150,8 @@ bool PuzzleNode::checkConnection(PuzzleNode *puzzleNode,
   return result;
 }
 
-void PuzzleNode::connectNode(PuzzleNode *puzzleNode, std::string position,
-                             int value) {
+void PuzzleNode::makeConnection(PuzzleNode *puzzleNode, std::string position,
+                                int value) {
 
   if (position == "top") {
     set_top(value);
@@ -172,6 +172,22 @@ void PuzzleNode::connectNode(PuzzleNode *puzzleNode, std::string position,
     set_left(value);
     set_leftNode(puzzleNode);
     puzzleNode->set_right(value);
+    puzzleNode->set_rightNode(this);
+  }
+}
+
+void PuzzleNode::connectNode(PuzzleNode *puzzleNode, std::string position) {
+  if (position == "top") {
+    set_topNode(puzzleNode);
+    puzzleNode->set_bottomNode(this);
+  } else if (position == "right") {
+    set_rightNode(puzzleNode);
+    puzzleNode->set_leftNode(this);
+  } else if (position == "bottom") {
+    set_bottomNode(puzzleNode);
+    puzzleNode->set_topNode(this);
+  } else if (position == "left") {
+    set_leftNode(puzzleNode);
     puzzleNode->set_rightNode(this);
   }
 }

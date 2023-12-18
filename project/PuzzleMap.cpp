@@ -89,21 +89,21 @@ void PuzzleMap::generatePuzzleMap() {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
         if (i != size - 1 && j != size - 1) {
-          puzzles[i * size + j]->connectNode(puzzles[i * size + j + 1], "right",
-                                             randomNumbers[g]);
+          puzzles[i * size + j]->makeConnection(puzzles[i * size + j + 1],
+                                                "right", randomNumbers[g]);
           g++;
-          puzzles[i * size + j]->connectNode(puzzles[(i + 1) * size + j],
-                                             "bottom", randomNumbers[g]);
+          puzzles[i * size + j]->makeConnection(puzzles[(i + 1) * size + j],
+                                                "bottom", randomNumbers[g]);
           g++;
         }
         if (i != size - 1 && j == size - 1) {
-          puzzles[i * size + j]->connectNode(puzzles[(i + 1) * size + j],
-                                             "bottom", randomNumbers[g]);
+          puzzles[i * size + j]->makeConnection(puzzles[(i + 1) * size + j],
+                                                "bottom", randomNumbers[g]);
           g++;
         }
         if (i == size - 1 && j != size - 1) {
-          puzzles[i * size + j]->connectNode(puzzles[i * size + j + 1], "right",
-                                             randomNumbers[g]);
+          puzzles[i * size + j]->makeConnection(puzzles[i * size + j + 1],
+                                                "right", randomNumbers[g]);
           g++;
         }
       }

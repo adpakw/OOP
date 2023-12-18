@@ -34,7 +34,8 @@ public:
   bool checkToConnect(PuzzleNode *puzzleNode, std::string position) const;
   bool checkConnection(PuzzleNode *puzzleNode, std::string position) const;
 
-  void connectNode(PuzzleNode *puzzleNode, std::string position, int value);
+  void makeConnection(PuzzleNode *puzzleNode, std::string position, int value);
+  void connectNode(PuzzleNode *puzzleNode, std::string position);
   void disconnectNode(PuzzleNode *puzzleNode, std::string position);
 };
 
