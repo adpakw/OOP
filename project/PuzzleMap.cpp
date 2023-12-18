@@ -133,4 +133,3 @@ bool PuzzleMap::checkConnectionsInMap() const {
   }
   return result == (size - 1) * 2 * size;
 }
-
